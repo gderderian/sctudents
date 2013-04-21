@@ -63,14 +63,28 @@ After the user begins gameplay, the **left** and **right** arrow keys move the p
 
 ## Scoring
 
-The user begins with an initial score of **zero** and **four** total lives. As described above, the following things control scoring in the game after it has started:
+The user begins with an initial score of **zero** and **four** total lives. As described above, the factors and items below control scoring in the game after it has started. A user can both gain and lose points as well as lives as gameplay progresses.
 
 - **Good Grade** - Adds 12-16 points to the user's score.
 - **Extra Credit Assignments** - Adds 10-15 points to the user's score.
 - **Starbucks** - Adds a new life to the user.
 - **Skateboarder** - Collisions deduct 15-20 points. 3+ collisions cause the user to lose a life.
 - **Dining Hall Food** - Collisions deduct 10-15 points. 4+ collisions cause the user to lose a life.
-- **Walls and Pathways** - Going forward past each path successfully gives the user 5 points on the beginning level, then 8, then 11, then so on. Falling through to the ground deducts a life.
+- **Walls and Pathways** - Going forward past each path successfully gives the user 5 points on the beginning level, then 8, then 11, then so on. Falling through to the ground by failing to jump forward to another object deducts a life.
+
+Gameplay ends (the user dies) when a user loses all lives or all points, whichever comes first.
+
+## User Interface
+
+The game will have a few distinct screens. Primarily, its main menu (shown below) will illustrate the users some of the basic icons and demonstrate to the user what each one does (i.e. tell them if it is a good or bad thing). This page also has a prompt for the user to type in their name and begin the game.
+
+![Main Menu](gameplay_mockup.png "Main Menu")
+
+Second, the gameplay screen, roughly prototyped below, will show the user their name, score, level name, and lives left along a top bar. At the same time, most of this window will be taken up by game play, as shown.
+
+![Gameplay](mainmenu_mockup.png "Gameplay")
+
+
 
 
 
