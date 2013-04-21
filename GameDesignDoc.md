@@ -5,10 +5,20 @@ Alternativley, you can write your document in plain text if you wish.
 
 ----
 
-## Markdown
-Markdown is a human-readable structured plain text format that is used to convert text into HTML. GitHub automatically renders Markdown into HTML.
+## Movable Things
+SCtudent is to have severavel different "things" relating to the daily life of a student at USC. Primarily, the game will have _bad_ things that take away from the score of the player, and _good_ things that add to the score of the player.
 
-This is a crash course on how to use Markdown. The following section will show you the plain text used to generate the document shown in the rendering section.
+The following is a detailed description of the things a user can interact with throughout the course of their gameplay:
+
+### Extra Credit Assignments (Good Thing)
+Adds ten or fifteen bonus points the score of a user throughout gameplay if the user jumps up or navigates around an obstacle to reach the extra credit. The extra credit is denoted by a paper icon with a green plus (as shown below), but they get progressivly harder to obtain and find as gameplay goes on and gets more difficult.
+
+![Extra Credit](http://icons.iconarchive.com/icons/creative-freedom/shimmer/128/Document-Add-icon.png "Extra Credit")
+
+Image Source From [IconArchive](http://www.iconarchive.com/show/shimmer-icons-by-creative-freedom/Document-Add-icon.html)
+
+### 
+
 
 ### Code
 
