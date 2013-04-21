@@ -1,7 +1,17 @@
-# Game Design Document
-This is a place holder for your game design document. You are advised to write your document in [Markdown](http://daringfireball.net/projects/markdown/) and the following section will show you how to write a document using Markdown markup.
+# SCtudents Game Design Document
+USC Sctudents (pronounced students) is a side-scrolling game that models the life of a student at USC. Each level grows progressively harder as the user advances down a different part of the USC campus (Trouddale Parkway, e-Quad, McCarthy Quad, etc.) while trying to catch items that help them (like extra credit and Trojan Grounds coffee) and avoid items that hurt them (like skateboarders or dining hall food).
 
-Alternativley, you can write your document in plain text if you wish.
+The user will begin on a level and, using the arrow keys, they will have to move to the right to complete the level by reaching Tommy Trojan. For each "block" of terrain they proceed past by jumping at the end (by pushing the spacebar), they will gain points. Not jumping to a new "block" of terrain will cause the user to fall to the ground below and lose a life.
+
+Below is a listing of levels for the game:
+- **Founders Park**
+- **Alumni Park**
+- **Parkside**
+- **e-Quad**
+- **McCarthy Quad**
+- **Trousdale Parkway**
+
+As time progresses through each level, it will get more and more difficult as more obstacles and fewer bonus items appear, with the final levels such as Trousdale Parkway being nearly impossible to complete due to many obstacles and difficult terrain.
 
 ----
 
@@ -78,13 +88,12 @@ Gameplay ends (the user dies) when a user loses all lives or all points, whichev
 
 The game will have a few distinct screens. Primarily, its main menu (shown below) will illustrate the users some of the basic icons and demonstrate to the user what each one does (i.e. tell them if it is a good or bad thing). This page also has a prompt for the user to type in their name and begin the game.
 
-![Main Menu](gameplay_mockup.png "Main Menu")
+![Main Menu](mainmenu_mockup.png "Main Menu")
 
 Second, the gameplay screen, roughly prototyped below, will show the user their name, score, level name, and lives left along a top bar. At the same time, most of this window will be taken up by game play, as shown.
 
-![Gameplay](mainmenu_mockup.png "Gameplay")
+![Gameplay](gameplay_mockup.png "Gameplay")
 
+In the gameplay example shown above, "Tommy", or the user's character (the logo might change), will have to advancte to the right, jumping from brick to brick while avoiding moving obstacles at the same time (such as the skateboarder going towards him). Towards the right, he will have to jump over the food in his way in order to avoid getting sick and will also have to jump to capture the good grades to get him bonus points, which will be moving up and down. As shown, this section of gamplay represents a fictional level #1 for the e-Quad.
 
-
-
-
+Additional screens are also available, such as a screen very similar to the main menu (just without the start button and name box) that shows then a user presses **P** to pause the game.
