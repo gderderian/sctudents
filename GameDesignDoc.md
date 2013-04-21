@@ -15,10 +15,38 @@ Adds ten or fifteen bonus points the score of a user throughout gameplay if the 
 
 ![Extra Credit](http://icons.iconarchive.com/icons/creative-freedom/shimmer/128/Document-Add-icon.png "Extra Credit")
 
-Image Source From [IconArchive](http://www.iconarchive.com/show/shimmer-icons-by-creative-freedom/Document-Add-icon.html)
+Image Sourced From [IconArchive](http://www.iconarchive.com/show/shimmer-icons-by-creative-freedom/Document-Add-icon.html)
 
-### 
+### Dining Hall Food (Bad Thing)
+Dining hall food is very bad for your character. Avoid it like the plague! Dining hall food appears randomly in your way throughout gameplay and can move toward you from side to side, and if you can't avoid it, touching it will cause your character to lose ten to fifteen points due to sickness. If you also touch dining hall food more than four times in one level, your character will lose a life!
 
+![Dining Hall Food](http://icons.iconarchive.com/icons/mohsenfakharian/christmas/128/fast-food-icon.png "Dining Hall Food")
+
+Image Sourced From [IconArchive](http://www.iconarchive.com/show/christmas-icons-by-mohsenfakharian/fast-food-icon.html)
+
+### Gameplay Structures/Pathways (Good and Bad)
+Playing the side-scrolling game involved moving to the right in the environment to have the player reach their final goal. As they move, they will have to stay on a specific pathway, represented by bricks, that changes in height (i.e. they player will have to jump up or down to continue moving to the right). Each path represents a stationary texture image that represents a specific part of campus for each level (the e-quad or Trousdale Parkway, for example).
+
+The user gains a steady amount of points as they move to the right, gaining more and more points the faster gameplay goes (5 points for every completed structure going right on the beginning levels, then 8 for the second level, and so on). In areas where there is no brick pathway and users have to jump to advance to the right, failing to jump and falling through an empty spot in the bricks will cost the user a life.
+
+Textures for each level look like the following brick patterns:
+![Textured Brick Patterns](http://www.highresolutiontextures.com/images/texture-pack-2-preview.jpg "Textured Brick Patterns")
+
+Image Sourced From [High Resultion Textures](http://www.highresolutiontextures.com/free-brick-wall-texture-pack)
+
+### Skateboarders (Bad Thing)
+Skateboarders are one of the most prevalent items in the game. They will appear at random intervals and skateboard towards your character, and you have to avoid them. If you collide with a skateboarder, you will love fifteen to twenty points, but colliding more than three times will cause your player to lose a life.
+
+![Skateboarder](http://2.bp.blogspot.com/-sdXRbd4V7Z0/ThniQhptbSI/AAAAAAAAAJs/n3eMyME70Ws/s1600/skateboard_ch.jpg "Skateboarder")
+
+Image Sourced From [Will Samatis](http://officialwill.blogspot.com/2011/07/flash-game-art.html)
+
+### Good Grade (Good Thing)
+A good grade is one of the easiest ways to gain points. They appear randomly but bounce around the window, making them slightly difficult to obtain. However, catching one can lead to a bonus addition of twenve to sixteen points for the player.
+
+![Good Grade](http://www.appgraphix.com/wp-content/uploads/2011/04/aplus1.png "Good Grade")
+
+Image Sourced From [AppGraphix](http://www.appgraphix.com/portfolios/iphone-icon-2/)
 
 ### Code
 
