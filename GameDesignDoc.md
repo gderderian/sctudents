@@ -48,80 +48,20 @@ A good grade is one of the easiest ways to gain points. They appear randomly but
 
 Image Sourced From [AppGraphix](http://www.appgraphix.com/portfolios/iphone-icon-2/)
 
-### Code
+### Trojan Grounds Coffee (Good Thing)
+A Starbucks coffee from Trojan Grounds appears rarely, but when it does and you can catch it, it can give your player another life, making it the most valuable item to obtain in all of the game.
 
-```
-# Header 1
-## Header 2
-### Header 3
-#### Header 4
-##### Header 5
+![Starbucks](http://cdn1.iconfinder.com/data/icons/Starbucks_coffee/PNG/128/starbucks_coffee_1.png "Starbucks")
 
-You can also write in **bold** or _italics_. You can also ~~strike through~~ or write inline `Code Segments`
+Image Sourced From [IconFinder](http://www.iconfinder.com/icondetails/47674/128/coffee_cup_lid_starbucks_icon)
 
->Blockquotes are done as such.
+## Gameplay
 
-Just make sure to separate paragraphs with an emptyline. 
-Otherwise, they are considered in the same paragraph.
+This game is to be played via the keyboard. The user will first see a menu with brief game instructions, and after entering a name in a text box and clicking a start button, they user can begin to play.
 
-You link to [Google](https://www.google.com) as such and lists are written has follows:
-  1. First you indent with two empty spaces.
-  1. Then, you use:
-    * `1.` to signal an ordered (i.e. numbered) list, or
-    * `*`, `-`, `+` to represent an unordered list.
-      1. Make sure to maintain indentation
-      1. As it is used to identify sub-lists
-  1. Numbering and symboles don't matter as they are auto-generated later.
-
-Tables are pretty easy to make:
-
-| Tables        | Are           | Easy          |
-| ------------- |:-------------:| -------------:|
-| left-aligned  | centered      | right-aligned |
-| header are    | bolded and    | centered      |
-| zebra stripes | are neat      | 1             |
+After the user begins gameplay, the **left** and **right** arrow keys move the player's character left and right. The **spacebar** allows a character to jump, and the **P** letter key lets a user pause the game to access the menu.
 
 
-Images are added inline by using the following syntax
-![alt text](http://octodex.github.com/images/Professortocat_v2.png "Image Title")
-```
-
-----
-
-### Rendering
-This section shows the rendering of the plain text above.
-
-# Header 1
-## Header 2
-### Header 3
-#### Header 4
-##### Header 5
-
-You can also write in **bold** or _italics_. You can also ~~strike through~~ or write inline `Code Segments`
-
->Blockquotes are done as such.
-
-Just make sure to separate paragraphs with an emptyline. 
-Otherwise, they are considered in the same paragraph.
-
-You link to [Google](https://www.google.com) as such and lists are written has follows:
-  1. First you indent with two empty spaces.
-  1. Then, you use:
-    * `1.` to signal an ordered (i.e. numbered) list, or
-    * `*`, `-`, `+` to represent an unordered list.
-      1. Make sure to maintain indentation
-      1. As it is used to identify sub-lists
-  1. Numbering and symboles don't matter as they are auto-generated later.
-
-Tables are pretty easy to make:
-
-| Tables        | Are           | Easy          |
-| ------------- |:-------------:| -------------:|
-| left-aligned  | centered      | right-aligned |
-| header are    | bolded and    | centered      |
-| zebra stripes | are neat      | 1             |
 
 
-Images are added inline by using the following syntax
-![alt text](http://octodex.github.com/images/Professortocat_v2.png "Image Title")
 
