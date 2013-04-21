@@ -1,7 +1,7 @@
 # SCtudents Game Design Document
-USC Sctudents (pronounced students) is a side-scrolling game that models the life of a student at USC. Each level grows progressively harder as the user advances down a different part of the USC campus (Trouddale Parkway, e-Quad, McCarthy Quad, etc.) while trying to catch items that help them (like extra credit and Trojan Grounds coffee) and avoid items that hurt them (like skateboarders or dining hall food).
+SCtudents (pronounced students) is a side-scrolling game that pretends to model the life of a student at USC. Each level grows progressively harder as the user advances down a different part of the USC campus (Trousdale Parkway, e-Quad, McCarthy Quad, etc.) while trying to catch items that help them gain points (like extra credit and Trojan Grounds coffee) and avoid items that hurt them by deducting points (like skateboarders or dining hall food).
 
-The user will begin on a level and, using the arrow keys, they will have to move to the right to complete the level by reaching Tommy Trojan. For each "block" of terrain they proceed past by jumping at the end (by pushing the spacebar), they will gain points. Not jumping to a new "block" of terrain will cause the user to fall to the ground below and lose a life.
+The user will begin and, using the arrow keys, they will have to move to the right to complete the level by reaching Tommy Trojan. For each "block" of terrain they proceed past by jumping at the end (by pushing the spacebar), they will gain points. Not jumping to a new "block" of terrain will cause the user to fall to the ground below and lose a life.
 
 Below is a listing of levels for the game:
 - **Founders Park**
