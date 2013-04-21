@@ -61,7 +61,16 @@ This game is to be played via the keyboard. The user will first see a menu with 
 
 After the user begins gameplay, the **left** and **right** arrow keys move the player's character left and right. The **spacebar** allows a character to jump, and the **P** letter key lets a user pause the game to access the menu.
 
+## Scoring
 
+The user begins with an initial score of **zero** and **four** total lives. As described above, the following things control scoring in the game after it has started:
+
+- **Good Grade** - Adds 12-16 points to the user's score.
+- **Extra Credit Assignments** - Adds 10-15 points to the user's score.
+- **Starbucks** - Adds a new life to the user.
+- **Skateboarder** - Collisions deduct 15-20 points. 3+ collisions cause the user to lose a life.
+- **Dining Hall Food** - Collisions deduct 10-15 points. 4+ collisions cause the user to lose a life.
+- **Walls and Pathways** - Going forward past each path successfully gives the user 5 points on the beginning level, then 8, then 11, then so on. Falling through to the ground deducts a life.
 
 
 
