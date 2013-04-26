@@ -88,11 +88,11 @@ Gameplay ends (the user dies) when a user loses all lives or all points, whichev
 
 The game will have a few distinct screens. Primarily, its main menu (shown below) will illustrate the users some of the basic icons and demonstrate to the user what each one does (i.e. tell them if it is a good or bad thing). This page also has a prompt for the user to type in their name and begin the game.
 
-![Main Menu](mainmenu_mockup.png "Main Menu")
+![Main Menu](images/mainmenu_mockup.png "Main Menu")
 
 Second, the gameplay screen, roughly prototyped below, will show the user their name, score, level name, and lives left along a top bar. At the same time, most of this window will be taken up by game play, as shown.
 
-![Gameplay](gameplay_mockup.png "Gameplay")
+![Gameplay](images/gameplay_mockup.png "Gameplay")
 
 In the gameplay example shown above, "Tommy", or the user's character (the logo might change), will have to advancte to the right, jumping from brick to brick while avoiding moving obstacles at the same time (such as the skateboarder going towards him). Towards the right, he will have to jump over the food in his way in order to avoid getting sick and will also have to jump to capture the good grades to get him bonus points, which will be moving up and down. As shown, this section of gamplay represents a fictional level #1 for the e-Quad.
 
