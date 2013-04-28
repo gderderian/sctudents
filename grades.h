@@ -8,6 +8,7 @@ class Grades : public Thing {
 	public:
 		Grades(QPixmap *pm, int nx, int ny);
 		void move();
+		int getKey();
 };
 
 #endif // GRADE_CPP
