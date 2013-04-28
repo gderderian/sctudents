@@ -13,6 +13,7 @@
 #include <QFormLayout>
 #include <QString>
 #include <QPixmap>
+#include <QGraphicsPixmapItem>
 #include <time.h>
 #include "thing.h"
 #include "player.h"
@@ -30,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
 		
    	gameScene = new QGraphicsScene();
    	gameView = new QGraphicsView(gameScene);
+   	//gameView->setFixedSize(650,550);
    	mainStackables = new QVBoxLayout();
    	iconStackables = new QHBoxLayout();
    	
@@ -267,8 +269,12 @@ void MainWindow::startGame()
 		cout << "Hello world!" << endl;
 	}
 	
+	bg_img = new QGraphicsPixmapItem(QPixmap("images/tdale_pkwy.jpg").scaledToHeight(450));
+	bg_img->setPos(0,0);
+	gameScene->addItem(bg_img);
+	
 	QPixmap player_img("images/sctudent.png");
-	character = new Player(&player_img, 0, 0);
+	character = new Player(&player_img, 225, 225);
 	gameScene->addItem(character);
 	objects.push_back(character);
 	
@@ -288,27 +294,32 @@ void MainWindow::handleTimer()
 	QPixmap food_img("images/food.png");
 	QPixmap sboarder_img("images/skateboarder.png");
 	
-	int rand_x = rand() % 651;
-	int rand_y = rand() % 451;
+	int rand_x = rand() % 751;
+	int rand_y = rand() % 551;
 	
-	grade = new Grades(&grades_img, 25, 25);
+	//grade = new Grades(&grades_img, 25, 25);
 	//gameScene->addItem(grade);
 	//objects.push_back(grade);
 	
 	timerRuns++;
 	
 	if (goUp == true){
-		character->setX(character->getX());
-		character->setY(character->getY() - 3);
+		if (character->getY() > 0){
+			character->setY(character->getY() - 3);
+		}
 	} else if (goDown == true){
-		character->setX(character->getX());
-		character->setY(character->getY() + 3);
+		if (character->getY() <= (450 - 145)){
+			character->setY(character->getY() + 3);
+		}
 	} else if (goLeft == true){
-		character->setX(character->getX() - 3);
-		character->setY(character->getY());
+		if (character->getX() >0){
+			character->setX(character->getX() - 3);
+		}
 	} else if (goRight == true){
-		character->setX(character->getX() + 3);
-		character->setY(character->getY());
+	cout << character->getX() << endl;
+		if (character->getX() <= (625)){
+			character->setX(character->getX() + 3);
+		}
 	}
 	
 }

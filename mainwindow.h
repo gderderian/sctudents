@@ -94,6 +94,7 @@ private:
 		bool goDown;
 		bool goLeft;
 		bool goRight;
+		QGraphicsPixmapItem *bg_img;
 		Player *character;
 		Grades *grade;
 		vector<Thing*> objects;
