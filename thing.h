@@ -10,6 +10,7 @@ class Thing : public QGraphicsPixmapItem {
 	public:
 		Thing(QPixmap *pm, int nx, int ny);
 		virtual void move() = 0;
+		virtual int getKey() = 0;
 		int getX();
 		int getY();
 		void setX(int new_x);
