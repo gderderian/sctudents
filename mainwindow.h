@@ -89,14 +89,23 @@ private:
 		int score;
 		int lives;
 		int level;
+		int levelTimer;
 		int timerRuns;
+		int cols_with_sboarders;
+		int cols_with_food;
 		bool goUp;
 		bool goDown;
 		bool goLeft;
 		bool goRight;
+		bool gameStarted;
+		bool paused;
+		string levelname;
 		QGraphicsPixmapItem *bg_img;
 		Player *character;
 		Grades *grade;
+		Skateboarder *boarder;
+		Coffee *starbucks;
+		Food *eat;
 		vector<Thing*> objects;
 public:
 
@@ -105,6 +114,7 @@ protected:
 		void keyReleaseEvent(QKeyEvent *event);
 public slots:
 		void startGame();
+		void pauseGame();
 		void handleTimer();
 };
 

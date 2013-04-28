@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <QPushButton>
 #include <QLabel>
 #include <QtGui>
@@ -14,7 +15,7 @@
 #include <QString>
 #include <QPixmap>
 #include <QGraphicsPixmapItem>
-#include <time.h>
+#include <QMessageBox>
 #include "thing.h"
 #include "player.h"
 #include "skateboarder.h"
@@ -186,7 +187,7 @@ MainWindow::MainWindow(QWidget *parent) :
 		menuBar->addWidget(ingamestartButton);
 
 		ingamepauseButton = new QPushButton("Pause Game");
-		connect(ingamepauseButton, SIGNAL(clicked()), this, SLOT(startGame()));
+		connect(ingamepauseButton, SIGNAL(clicked()), this, SLOT(pauseGame()));
 		menuBar->addWidget(ingamepauseButton);
 		
 		ingamequitButton = new QPushButton("Quit Game");
@@ -198,39 +199,56 @@ MainWindow::MainWindow(QWidget *parent) :
 		gameStackables->addLayout(menuBar);
 
 		gameTimer = new QTimer();
-    gameTimer->setInterval(5);
+		levelTimer = 50;
+    gameTimer->setInterval(levelTimer);
     connect(gameTimer, SIGNAL(timeout()), this, SLOT(handleTimer()));
 
 		setFocusPolicy(Qt::StrongFocus);
-		//setFocus();
 		
 		srand(time(NULL));
+		gameStarted = false;
 
 }
 
 void MainWindow::startGame()
 {
 	
+	// Check for username setting
+	if (nameBox->text() == ""){
+		 QMessageBox msgBox;
+ 			msgBox.setText("You must enter a username in order to proceed.");
+ 			msgBox.exec();
+ 			return;
+	} else if ((nameBox->text()).length() > 38) {
+			QMessageBox msgBox;
+ 			msgBox.setText("Enter a shorter username, please!");
+ 			msgBox.exec();
+ 			return;
+	}
+	
 	setFocusPolicy(Qt::StrongFocus);
-	//setFocus();
 	grabKeyboard();
 	
 	// Set initial game variables
 	score = 0;
 	lives = 4;
 	level = 1;
-	timerRuns = 0;
+	timerRuns = 1;
+	cols_with_food = 0;
+	cols_with_sboarders = 0;
 	goUp = false;
 	goDown = false;
 	goLeft = false;
 	goRight = false;
+	gameStarted = true;
+	paused = false;
 	
 	// Set variables to the screen
 	userName = (nameBox->text()).toUtf8().constData();
 	string uname = "User: " + userName;
 	usernameLabel->setText(QString::fromStdString(uname));
 	
-	levelnameLabel->setText(QString::fromStdString("Level: ") + QString::number(level));
+	levelnameLabel->setText(QString::fromStdString("Level: ") + QString::number(level) + QString::fromStdString(" - Founders Park"));
 	scoreLabel->setText(QString::fromStdString("Score: ") + QString::number(score));
 	livesLabel->setText(QString::fromStdString("Lives: ") + QString::number(lives));
 	
@@ -258,16 +276,7 @@ void MainWindow::startGame()
 	
 	// Begin game timer
 	gameTimer->start();
-	
 	setFocusPolicy(Qt::StrongFocus);
-	//setFocus();
-	
-	if (this->hasFocus())
-	{
-		cout << "I HAVE FOCUS!" << endl;
-	} else {
-		cout << "Hello world!" << endl;
-	}
 	
 	bg_img = new QGraphicsPixmapItem(QPixmap("images/tdale_pkwy.jpg").scaledToHeight(450));
 	bg_img->setPos(0,0);
@@ -287,6 +296,11 @@ void MainWindow::show()
 
 void MainWindow::handleTimer()
 {
+
+	// Check if player has lost the game
+	if ((gameStarted == true && lives <= 0) || (gameStarted == true && score < 0)){
+		gameTimer->stop();
+	}
 	
 	// Add in new game objects by creating images
 	QPixmap trogro_img("images/coffee.png");
@@ -294,31 +308,130 @@ void MainWindow::handleTimer()
 	QPixmap food_img("images/food.png");
 	QPixmap sboarder_img("images/skateboarder.png");
 	
-	int rand_x = rand() % 751;
-	int rand_y = rand() % 551;
+	int rand_x = rand() % 600;
+	int rand_y = rand() % 325;
 	
-	//grade = new Grades(&grades_img, 25, 25);
-	//gameScene->addItem(grade);
-	//objects.push_back(grade);
+	if (timerRuns % 50 == 0){
+		grade = new Grades(&grades_img, 0, rand_y);
+		gameScene->addItem(grade);
+		objects.push_back(grade);
+	}
+	
+	if (timerRuns % 100 == 0){
+		boarder = new Skateboarder(&sboarder_img, 550, rand_y);
+		gameScene->addItem(boarder);
+		objects.push_back(boarder);
+	}
+	
+	if (timerRuns % 100 == 0){
+		eat = new Food(&food_img, rand_x, 350);
+		gameScene->addItem(eat);
+		objects.push_back(eat);
+	}
+	
+	if (timerRuns % 750 == 0){
+		starbucks = new Coffee(&trogro_img, 550, rand_y);
+		gameScene->addItem(starbucks);
+		objects.push_back(starbucks);
+	}
+	
+	for (unsigned int i=0; i < objects.size(); i++) {
+		if (timerRuns % 1 == 0){
+			objects.at(i)->move();
+		}
+	}
+	
+	if (timerRuns % 500 == 0){
+			
+			level++;
+			levelTimer =  levelTimer - 10;
+			gameTimer->setInterval(levelTimer);
+			
+			if (level == 1){
+				levelname = "Founders Park";
+			} else if (level == 2){
+				levelname = "Alumni Park";
+			} else if (level == 3){
+				levelname = "Parkside";
+			} else if (level == 4){
+				levelname = "e-Quad";
+			} else if (level == 5){
+				levelname = "McCarthy Quad";
+			} else if (level == 6){
+				levelname = "Trousdale Parkway";
+			} else {
+			 	levelname = "Secret Impossible Level!";
+			}
+						
+			levelnameLabel->setText(QString::fromStdString("Level: ") + QString::number(level) + QString::fromStdString(" - ") + QString::fromStdString(levelname));
+
+	}
+	
+	for (unsigned int i = 0; i < objects.size(); i++) {
+		Thing* itemA = objects.at(i);
+			Thing* itemB = character;
+			if (itemA == itemB) {
+				continue;
+			}
+			if (itemA->collidesWithItem(itemB)) {
+			
+				switch(itemA->getKey()){
+					case 1: // Collided with skateboarder
+						cols_with_sboarders++;
+						score = score - 5;
+						scoreLabel->setText(QString::fromStdString("Score: ") + QString::number(score));
+						if (cols_with_sboarders >= 3){
+							lives--;
+							livesLabel->setText(QString::fromStdString("Lives: ") + QString::number(lives));
+							cols_with_sboarders = 0;
+						}
+						break;
+					case 2: // Collided with grades
+						score += rand() % (16-12) + 12;
+						scoreLabel->setText(QString::fromStdString("Score: ") + QString::number(score));
+						break;
+					case 3: // Collided with food
+						cols_with_food++;
+						score = score - 5;
+						scoreLabel->setText(QString::fromStdString("Score: ") + QString::number(score));
+						if (cols_with_food >= 4){	
+							lives--;
+							livesLabel->setText(QString::fromStdString("Lives: ") + QString::number(lives));
+							cols_with_food = 0;
+						}
+						break;
+					case 4: // Collided with coffee
+						lives++;
+						livesLabel->setText(QString::fromStdString("Lives: ") + QString::number(lives));
+						break;
+					case 5: // Collided with extra credit
+						score += rand() % (15-10) + 10;
+						scoreLabel->setText(QString::fromStdString("Score: ") + QString::number(score));
+						break;
+				}
+			
+				itemA->hide();
+				objects.erase(objects.begin() + i);
+			}
+	}
 	
 	timerRuns++;
 	
 	if (goUp == true){
 		if (character->getY() > 0){
-			character->setY(character->getY() - 3);
+			character->setY(character->getY() - 10);
 		}
 	} else if (goDown == true){
 		if (character->getY() <= (450 - 145)){
-			character->setY(character->getY() + 3);
+			character->setY(character->getY() + 10);
 		}
 	} else if (goLeft == true){
-		if (character->getX() >0){
-			character->setX(character->getX() - 3);
+		if (character->getX() > 0){
+			character->setX(character->getX() - 10);
 		}
 	} else if (goRight == true){
-	cout << character->getX() << endl;
 		if (character->getX() <= (625)){
-			character->setX(character->getX() + 3);
+			character->setX(character->getX() + 10);
 		}
 	}
 	
@@ -360,6 +473,20 @@ void MainWindow::keyReleaseEvent(QKeyEvent *e){
 		break;
 	}
 
+}
+
+void MainWindow::pauseGame(){
+
+	if (paused == true){
+		gameTimer->start();
+		ingamepauseButton->setText("Pause Game");
+		paused = false;
+	} else {
+		gameTimer->stop();
+		ingamepauseButton->setText("Unpause Game");
+		paused = true;
+	}
+	
 }
 
 MainWindow::~MainWindow()
