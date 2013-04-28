@@ -30,6 +30,7 @@
 #include "coffee.h"
 #include "grades.h"
 #include "food.h"
+#include "extracredit.h"
 
 #define WINDOW_MAX_X 750
 #define WINDOW_MAX_Y 550
@@ -58,6 +59,7 @@ private:
     QVBoxLayout *trogroLayout;
     QVBoxLayout *gradesLayout;
     QVBoxLayout *foodLayout;
+    QVBoxLayout *ecreditLayout;
     QFormLayout *nameLayout;
     QLabel *gametitleLabel;
     QLabel *instructionsLabel;
@@ -74,6 +76,9 @@ private:
     QLabel *food;
     QLabel *foodnameLabel;
     QLabel *foodinfoLabel;
+    QLabel *ecredit;
+    QLabel *ecreditnameLabel;
+    QLabel *ecreditinfoLabel;
     QLabel *nameInstructions;
     QLineEdit *nameBox;
     QPushButton *startgameButton;
@@ -106,6 +111,7 @@ private:
 		Skateboarder *boarder;
 		Coffee *starbucks;
 		Food *eat;
+		ExtraCredit *ec;
 		vector<Thing*> objects;
 public:
 

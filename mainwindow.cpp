@@ -22,6 +22,7 @@
 #include "coffee.h"
 #include "grades.h"
 #include "food.h"
+#include "extracredit.h"
 
 using namespace std;
 
@@ -40,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
    	trogroLayout = new QVBoxLayout();
    	gradesLayout = new QVBoxLayout();
    	foodLayout = new QVBoxLayout();
+   	ecreditLayout = new QVBoxLayout();
    	
    	window->setFixedSize(WINDOW_MAX_X, WINDOW_MAX_Y);
    	window->setWindowTitle("Grant Derderian PA5 - SCtudents Qt Game");
@@ -135,6 +137,23 @@ MainWindow::MainWindow(QWidget *parent) :
 		foodLayout->addWidget(foodnameLabel);
 		foodLayout->addWidget(foodinfoLabel);
 		iconStackables->addLayout(foodLayout);
+		
+		ecredit = new QLabel();
+		QPixmap ecdt_img("images/ecredit.png");
+		ecredit->setPixmap(ecdt_img.scaled(100,100,Qt::KeepAspectRatio));
+		ecredit->setAlignment(Qt::AlignHCenter);
+		ecreditnameLabel = new QLabel();
+		ecreditnameLabel->setText("Extra Credit");
+		ecreditnameLabel->setFont(itemnameFont);
+		ecreditnameLabel->setAlignment(Qt::AlignHCenter);
+		ecreditinfoLabel = new QLabel();
+		ecreditinfoLabel->setText("adds points");
+		ecreditinfoLabel->setFont(itemdescFont);
+		ecreditinfoLabel->setAlignment(Qt::AlignHCenter);
+		ecreditLayout->addWidget(ecredit);
+		ecreditLayout->addWidget(ecreditnameLabel);
+		ecreditLayout->addWidget(ecreditinfoLabel);
+		iconStackables->addLayout(ecreditLayout);
 
 		nameInstructions = new QLabel();
 		nameInstructions->setText("Enter Your Name and Press Start Below to Begin!");
@@ -219,7 +238,7 @@ void MainWindow::startGame()
  			msgBox.setText("You must enter a username in order to proceed.");
  			msgBox.exec();
  			return;
-	} else if ((nameBox->text()).length() > 38) {
+	} else if ((nameBox->text()).length() >= 38) {
 			QMessageBox msgBox;
  			msgBox.setText("Enter a shorter username, please!");
  			msgBox.exec();
@@ -269,6 +288,9 @@ void MainWindow::startGame()
   delete food;
   delete foodnameLabel;
   delete foodinfoLabel;
+ // delete ecredit;
+ // delete ecreditnameLabel;
+ // delete ecreditinfoLabel;
   delete nameInstructions;
   delete nameBox;
   delete startgameButton;
@@ -307,6 +329,7 @@ void MainWindow::handleTimer()
 	QPixmap grades_img("images/grades.png");
 	QPixmap food_img("images/food.png");
 	QPixmap sboarder_img("images/skateboarder.png");
+	QPixmap ecredit_img("images/ecredit.png");
 	
 	int rand_x = rand() % 600;
 	int rand_y = rand() % 325;
