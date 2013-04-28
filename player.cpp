@@ -8,3 +8,7 @@ Player::Player(QPixmap *pm,int nx,int ny) : Thing(pm,nx,ny) {
 void Player::move(){
 
 }
+
+int Player::getKey(){
+	return -1;
+}
