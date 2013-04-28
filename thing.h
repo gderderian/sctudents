@@ -2,7 +2,7 @@
 #define THING_H
 
 #include <QPixmap>
- #include <QGraphicsPixmapItem>
+#include <QGraphicsPixmapItem>
 
 using namespace std;
 

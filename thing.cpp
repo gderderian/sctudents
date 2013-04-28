@@ -23,10 +23,12 @@ int Thing::getY(){
 
 void Thing::setX(int new_x){
 	x = new_x;
+	setPos(new_x,y);
 }
 
 void Thing::setY(int new_y){
 	y = new_y;
+	setPos(x,new_y);
 }
 
 void Thing::setvX(int new_vx){

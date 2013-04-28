@@ -25,15 +25,14 @@
 #include <QStringListModel>
 #include <string>
 #include "thing.h"
-#include "graphicwindow.h"
 #include "player.h"
 #include "skateboarder.h"
 #include "coffee.h"
 #include "grades.h"
 #include "food.h"
 
-#define WINDOW_MAX_X 650
-#define WINDOW_MAX_Y 450
+#define WINDOW_MAX_X 750
+#define WINDOW_MAX_Y 550
 
 using namespace std;
 
@@ -91,6 +90,10 @@ private:
 		int lives;
 		int level;
 		int timerRuns;
+		bool goUp;
+		bool goDown;
+		bool goLeft;
+		bool goRight;
 		Player *character;
 		Grades *grade;
 		vector<Thing*> objects;
@@ -98,6 +101,7 @@ public:
 
 protected:
 		void keyPressEvent(QKeyEvent *event);
+		void keyReleaseEvent(QKeyEvent *event);
 public slots:
 		void startGame();
 		void handleTimer();

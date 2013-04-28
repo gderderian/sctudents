@@ -12,12 +12,9 @@
 #include <QVBoxLayout>
 #include <QFormLayout>
 #include <QString>
-#include <QStringList>
-#include <QStringListModel>
 #include <QPixmap>
 #include <time.h>
 #include "thing.h"
-#include "graphicwindow.h"
 #include "player.h"
 #include "skateboarder.h"
 #include "coffee.h"
@@ -203,7 +200,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(gameTimer, SIGNAL(timeout()), this, SLOT(handleTimer()));
 
 		setFocusPolicy(Qt::StrongFocus);
-		//grabKeyboard();
 		//setFocus();
 		
 		srand(time(NULL));
@@ -215,12 +211,17 @@ void MainWindow::startGame()
 	
 	setFocusPolicy(Qt::StrongFocus);
 	//setFocus();
+	grabKeyboard();
 	
 	// Set initial game variables
 	score = 0;
 	lives = 4;
 	level = 1;
 	timerRuns = 0;
+	goUp = false;
+	goDown = false;
+	goLeft = false;
+	goRight = false;
 	
 	// Set variables to the screen
 	userName = (nameBox->text()).toUtf8().constData();
@@ -266,6 +267,11 @@ void MainWindow::startGame()
 		cout << "Hello world!" << endl;
 	}
 	
+	QPixmap player_img("images/sctudent.png");
+	character = new Player(&player_img, 0, 0);
+	gameScene->addItem(character);
+	objects.push_back(character);
+	
 }
 
 void MainWindow::show()
@@ -277,38 +283,71 @@ void MainWindow::handleTimer()
 {
 	
 	// Add in new game objects by creating images
-	QPixmap player_img("images/coffee.png");
 	QPixmap trogro_img("images/coffee.png");
 	QPixmap grades_img("images/grades.png");
 	QPixmap food_img("images/food.png");
 	QPixmap sboarder_img("images/skateboarder.png");
 	
-	
-	
 	int rand_x = rand() % 651;
 	int rand_y = rand() % 451;
 	
 	grade = new Grades(&grades_img, 25, 25);
-	gameScene->addItem(grade);
-	objects.push_back(grade);
+	//gameScene->addItem(grade);
+	//objects.push_back(grade);
 	
 	timerRuns++;
+	
+	if (goUp == true){
+		character->setX(character->getX());
+		character->setY(character->getY() - 3);
+	} else if (goDown == true){
+		character->setX(character->getX());
+		character->setY(character->getY() + 3);
+	} else if (goLeft == true){
+		character->setX(character->getX() - 3);
+		character->setY(character->getY());
+	} else if (goRight == true){
+		character->setX(character->getX() + 3);
+		character->setY(character->getY());
+	}
 	
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *e){
 
-	cout << "keypressevent triggered" << endl;
+	switch (e->key()) {
+		case Qt::Key_Left:
+			goLeft = true;
+		break;
+		case Qt::Key_Right:
+			goRight = true;
+		break;
+		case Qt::Key_Up:
+			goUp = true;
+		break;
+		case Qt::Key_Down:
+			goDown = true;
+		break;
+	}
+
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent *e){
 
 	switch (e->key()) {
 		case Qt::Key_Left:
-			cout << "moving left" << endl;
+			goLeft = false;
+		break;
 		case Qt::Key_Right:
-			cout << "moving right" << endl;
-		default:
-			QWidget::keyPressEvent(e);
+			goRight = false;
+		break;
+		case Qt::Key_Up:
+			goUp = false;
+		break;
+		case Qt::Key_Down:
+			goDown = false;
+		break;
 	}
-
 
 }
 
