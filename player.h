@@ -8,6 +8,7 @@ class Player : public Thing {
 	public:
 	Player(QPixmap *pm, int nx, int ny);
 	void move();
+	int getKey();
 };
 
 #endif // PLAYER_CPP
