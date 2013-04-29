@@ -26,14 +26,11 @@
 
 using namespace std;
 
-MainWindow::MainWindow(QWidget *parent) :
-    QWidget(parent){
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent){
 
 		window = new QWidget();
-		
    	gameScene = new QGraphicsScene();
    	gameView = new QGraphicsView(gameScene);
-   	//gameView->setFixedSize(650,550);
    	mainStackables = new QVBoxLayout();
    	iconStackables = new QHBoxLayout();
    	
@@ -221,8 +218,6 @@ MainWindow::MainWindow(QWidget *parent) :
 		levelTimer = 50;
     gameTimer->setInterval(levelTimer);
     connect(gameTimer, SIGNAL(timeout()), this, SLOT(handleTimer()));
-
-		setFocusPolicy(Qt::StrongFocus);
 		
 		srand(time(NULL));
 		gameStarted = false;
@@ -288,9 +283,9 @@ void MainWindow::startGame()
   delete food;
   delete foodnameLabel;
   delete foodinfoLabel;
- // delete ecredit;
- // delete ecreditnameLabel;
- // delete ecreditinfoLabel;
+ 	delete ecredit;
+ 	delete ecreditnameLabel;
+ 	delete ecreditinfoLabel;
   delete nameInstructions;
   delete nameBox;
   delete startgameButton;
@@ -298,7 +293,6 @@ void MainWindow::startGame()
 	
 	// Begin game timer
 	gameTimer->start();
-	setFocusPolicy(Qt::StrongFocus);
 	
 	bg_img = new QGraphicsPixmapItem(QPixmap("images/tdale_pkwy.jpg").scaledToHeight(450));
 	bg_img->setPos(0,0);
@@ -322,6 +316,7 @@ void MainWindow::handleTimer()
 	// Check if player has lost the game
 	if ((gameStarted == true && lives <= 0) || (gameStarted == true && score < 0)){
 		gameTimer->stop();
+		levelnameLabel->setText(QString::fromStdString("Game Over!"));
 	}
 	
 	// Add in new game objects by creating images
@@ -408,10 +403,18 @@ void MainWindow::handleTimer()
 					case 1: // Collided with skateboarder
 						cols_with_sboarders++;
 						score = score - 5;
-						scoreLabel->setText(QString::fromStdString("Score: ") + QString::number(score));
+						if (score <= 0) {
+							scoreLabel->setText(QString::fromStdString("Score: ") + QString::number(0));
+						} else {
+							scoreLabel->setText(QString::fromStdString("Score: ") + QString::number(score));
+						}
 						if (cols_with_sboarders >= 3){
 							lives--;
-							livesLabel->setText(QString::fromStdString("Lives: ") + QString::number(lives));
+							if (lives <= 0){
+								livesLabel->setText(QString::fromStdString("Lives: ") + QString::number(0));
+							} else {
+								livesLabel->setText(QString::fromStdString("Lives: ") + QString::number(lives));
+							}
 							cols_with_sboarders = 0;
 						}
 						break;
@@ -422,10 +425,18 @@ void MainWindow::handleTimer()
 					case 3: // Collided with food
 						cols_with_food++;
 						score = score - 5;
-						scoreLabel->setText(QString::fromStdString("Score: ") + QString::number(score));
+						if (score <= 0){
+							scoreLabel->setText(QString::fromStdString("Score: ") + QString::number(0));
+						} else {
+							scoreLabel->setText(QString::fromStdString("Score: ") + QString::number(score));
+						}
 						if (cols_with_food >= 4){	
 							lives--;
-							livesLabel->setText(QString::fromStdString("Lives: ") + QString::number(lives));
+							if (lives <= 0){
+								livesLabel->setText(QString::fromStdString("Lives: ") + QString::number(0));
+							} else {
+								livesLabel->setText(QString::fromStdString("Lives: ") + QString::number(lives));
+							}
 							cols_with_food = 0;
 						}
 						break;
@@ -464,44 +475,6 @@ void MainWindow::handleTimer()
 		}
 	}
 	
-}
-
-void MainWindow::keyPressEvent(QKeyEvent *e){
-
-	switch (e->key()) {
-		case Qt::Key_Left:
-			goLeft = true;
-		break;
-		case Qt::Key_Right:
-			goRight = true;
-		break;
-		case Qt::Key_Up:
-			goUp = true;
-		break;
-		case Qt::Key_Down:
-			goDown = true;
-		break;
-	}
-
-}
-
-void MainWindow::keyReleaseEvent(QKeyEvent *e){
-
-	switch (e->key()) {
-		case Qt::Key_Left:
-			goLeft = false;
-		break;
-		case Qt::Key_Right:
-			goRight = false;
-		break;
-		case Qt::Key_Up:
-			goUp = false;
-		break;
-		case Qt::Key_Down:
-			goDown = false;
-		break;
-	}
-
 }
 
 void MainWindow::pauseGame(){
@@ -547,13 +520,52 @@ void MainWindow::restartGame(){
 	gameTimer->start();
 	setFocusPolicy(Qt::StrongFocus);
 	
+	// Hide and delete all old objects in the scene
 	for (unsigned int i = 0; i < objects.size(); i++){
 		if (objects.at(i)->getKey() != -1){
 			objects.at(i)->hide();
-			objects.erase(objects.begin() + i);
 		}
 	}
 	
+	objects.clear();
+
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *e){
+
+	switch (e->key()) {
+		case Qt::Key_Left:
+			goLeft = true;
+		break;
+		case Qt::Key_Right:
+			goRight = true;
+		break;
+		case Qt::Key_Up:
+			goUp = true;
+		break;
+		case Qt::Key_Down:
+			goDown = true;
+		break;
+	}
+
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent *e){
+
+	switch (e->key()) {
+		case Qt::Key_Left:
+			goLeft = false;
+		break;
+		case Qt::Key_Right:
+			goRight = false;
+		break;
+		case Qt::Key_Up:
+			goUp = false;
+		break;
+		case Qt::Key_Down:
+			goDown = false;
+		break;
+	}
 
 }
 
