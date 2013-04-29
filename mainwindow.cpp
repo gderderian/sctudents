@@ -442,7 +442,7 @@ void MainWindow::handleTimer()
 
 	}
 	
-	/** Check for collissions by looping through all items and comparing them to the user/player */
+	/** Check for collisions by looping through all items and comparing them to the user/player */
 	for (unsigned int i = 0; i < objects.size(); i++) {
 		Thing* itemA = objects.at(i);
 			Thing* itemB = character;
@@ -505,6 +505,7 @@ void MainWindow::handleTimer()
 			
 				/** Removes items that have been crashed into */
 				itemA->hide();
+				delete objects.at(i);
 				objects.erase(objects.begin() + i);
 			}
 	}
@@ -585,9 +586,12 @@ void MainWindow::restartGame(){
 	for (unsigned int i = 0; i < objects.size(); i++){
 		if (objects.at(i)->getKey() != -1){
 			objects.at(i)->hide();
+			delete objects.at(i);
+			objects.erase(objects.begin() + i);
 		}
 	}
-	objects.clear();
+	
+	//objects.clear();
 
 }
 
