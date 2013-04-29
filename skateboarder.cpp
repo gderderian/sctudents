@@ -25,7 +25,8 @@ void Skateboarder::move() {
  	if (newY >= 400 || newY <= 0){
  		hide();
  	} else {
- 		setY(newY);
+ 		int set = (300 - (0.00075)*(((newX - 400) - 135)*((newX - 400) - 135)) - 50);
+ 		setY(set);
  	}
 
 }
