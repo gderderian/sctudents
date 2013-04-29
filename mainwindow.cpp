@@ -202,7 +202,7 @@ MainWindow::MainWindow(QWidget *parent) :
 		gameBar->addWidget(livesLabel);
 		
 		ingamestartButton = new QPushButton("Start Game");
-		connect(ingamestartButton, SIGNAL(clicked()), this, SLOT(startGame()));	
+		connect(ingamestartButton, SIGNAL(clicked()), this, SLOT(restartGame()));	
 		menuBar->addWidget(ingamestartButton);
 
 		ingamepauseButton = new QPushButton("Pause Game");
@@ -358,6 +358,12 @@ void MainWindow::handleTimer()
 		objects.push_back(starbucks);
 	}
 	
+	if (timerRuns % 450 == 0){
+		ec = new ExtraCredit(&ecredit_img, 550, rand_y);
+		gameScene->addItem(ec);
+		objects.push_back(ec);
+	}
+	
 	for (unsigned int i=0; i < objects.size(); i++) {
 		if (timerRuns % 1 == 0){
 			objects.at(i)->move();
@@ -428,7 +434,7 @@ void MainWindow::handleTimer()
 						livesLabel->setText(QString::fromStdString("Lives: ") + QString::number(lives));
 						break;
 					case 5: // Collided with extra credit
-						score += rand() % (15-10) + 10;
+						score += rand() % (20-15) + 15;
 						scoreLabel->setText(QString::fromStdString("Score: ") + QString::number(score));
 						break;
 				}
@@ -510,6 +516,45 @@ void MainWindow::pauseGame(){
 		paused = true;
 	}
 	
+}
+
+void MainWindow::restartGame(){
+
+	gameTimer->stop();
+	
+	// Set initial game variables
+	score = 0;
+	lives = 4;
+	level = 1;
+	timerRuns = 1;
+	cols_with_food = 0;
+	cols_with_sboarders = 0;
+	goUp = false;
+	goDown = false;
+	goLeft = false;
+	goRight = false;
+	gameStarted = true;
+	paused = false;
+	
+	// Set variables to the screen
+	levelnameLabel->setText(QString::fromStdString("Level: ") + QString::number(level) + QString::fromStdString(" - Founders Park"));
+	scoreLabel->setText(QString::fromStdString("Score: ") + QString::number(score));
+	livesLabel->setText(QString::fromStdString("Lives: ") + QString::number(lives));
+	
+	// Begin game timer
+	levelTimer = 50;
+  gameTimer->setInterval(levelTimer);
+	gameTimer->start();
+	setFocusPolicy(Qt::StrongFocus);
+	
+	for (unsigned int i = 0; i < objects.size(); i++){
+		if (objects.at(i)->getKey() != -1){
+			objects.at(i)->hide();
+			objects.erase(objects.begin() + i);
+		}
+	}
+	
+
 }
 
 MainWindow::~MainWindow()

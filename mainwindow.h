@@ -121,6 +121,7 @@ protected:
 public slots:
 		void startGame();
 		void pauseGame();
+		void restartGame();
 		void handleTimer();
 };
 
