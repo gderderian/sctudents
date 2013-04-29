@@ -2,9 +2,12 @@
 
 using namespace std;
 
+/** Constructor for skateboarder, which makes a skateboarder at the given coordinates */
 Skateboarder::Skateboarder(QPixmap *pm,int nx,int ny) : Thing(pm,nx,ny) {
 }
 
+/** Moves the skateboarder within the screen from left, curving up to the right, with a polynomial line/slope formula based on the set velocity of the object.
+*/
 void Skateboarder::move() {
 
 	int velocityX = -8;
@@ -31,6 +34,9 @@ void Skateboarder::move() {
 
 }
 
+/** Gets the unique key of this derived object. 
+		@return 1, indicating this is a skatebaorder, for action to be taken upon it during collisions in the MainWindow class.
+*/
 int Skateboarder::getKey(){
 	return 1;
 }

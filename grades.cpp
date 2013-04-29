@@ -3,9 +3,11 @@
 
 using namespace std;
 
+/** Constructor for grades, which makes a grades item at the given coordinates */
 Grades::Grades(QPixmap *pm, int nx, int ny) : Thing(pm,nx,ny) {
 }
 
+/** Moves the grades items from left to right at a moderately fast pace within the game window. */
 void Grades::move() {
 
 	int velocityX = 5;
@@ -31,6 +33,9 @@ void Grades::move() {
 
 }
 
+/** Gets the unique key of this derived object. 
+		@return 2, indicating this is a grades item, for action to be taken upon it during collisions in the MainWindow class.
+*/
 int Grades::getKey(){
 	return 2;
 }

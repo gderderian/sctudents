@@ -4,6 +4,7 @@
 #include <QPixmap>
 #include "thing.h"
 
+/** Player class, which represents a user controllable character. */
 class Player : public Thing {
 	public:
 	Player(QPixmap *pm, int nx, int ny);

@@ -4,6 +4,7 @@
 #include <QPixmap>
 #include "thing.h"
 
+/** Skateboarder class, which represents a flying skateboarder. */
 class Skateboarder : public Thing {
 	public:
 		Skateboarder(QPixmap *pm, int nx, int ny);

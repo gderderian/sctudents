@@ -9,9 +9,9 @@
 
 using namespace std;
 
-/** @mainpage Grant Derderian's CS102 Programming Assignment #4
+/** @mainpage Grant Derderian's CS102 Programming Assignment #5
 *		@section purpose Overview
-*		This program allows a user to play a sliding tile puzzle game through an interactive GUI, and be able to run an A* algorithm on their game to get a list of solutions to solve the puzzle.
+*		SCtudents allows a player to model the fictional life of a student at USC by dodging obstacles and gaining lives and points as they progress through a part of campus to reach Tommy Trojan on each level.
 *		@section requirements Program Requirements and Compiling Instructions
 *		To compile the program only, run the following commands
 *		 qmake -project
@@ -22,7 +22,7 @@ using namespace std;
 *		 doxygen config.txt
 *		@section gameplay Gameplay Instructions
 *		To run the program and begin the interactive GUI, run the following command
-*		./puzzle_gderderi
+*		./game_gderderi
 */
 int main(int argc, char *argv[])
 {
