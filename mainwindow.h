@@ -45,6 +45,8 @@ public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void show();
+    int getHighScore();
+    string getHighScorer();
 private:
 		/** main program window */
 		QWidget *window;
@@ -134,6 +136,8 @@ private:
 		QLabel *levelnameLabel;
 		/** In-game label for the user's score */
 		QLabel *scoreLabel;
+		/** Main menu high score display */
+		QLabel *hscoreLabel;
 		/** In-game label for the user's lives */
 		QLabel *livesLabel;
 		/** Main game timer */
@@ -152,6 +156,8 @@ private:
 		int cols_with_sboarders;
 		/** Number of user collisions with food */
 		int cols_with_food;
+		/** Previous high score as read in from file, if applicable */
+		int hScore;
 		/** Boolean for if the user should be moved up at the next handletimer() call */
 		bool goUp;
 		/** Boolean for if the user should be moved down at the next handletimer() call */
@@ -192,6 +198,7 @@ public slots:
 		void pauseGame();
 		void handleTimer();
 		void restartGame();
+		void quitGame();
 };
 
 #endif // MAINWINDOW_H

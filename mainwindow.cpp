@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include <iostream>
+#include <fstream>
 #include <string>
+#include <sstream>
 #include <cmath>
 #include <cstdlib>
 #include <stdio.h>
@@ -172,6 +174,18 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent){
 		nameInstructions->setFont(instructionsFont);
 		nameInstructions->setAlignment(Qt::AlignHCenter);
 
+		/** Creates the label to show the user a high score, if set */
+		hScore = getHighScore();
+		hscoreLabel = new QLabel();
+		if (hScore != -1){
+			string hScorer = getHighScorer();
+			hscoreLabel->setText(QString::fromStdString("High Score ") + QString::number(hScore) + QString::fromStdString(" was set by ") + QString::fromStdString(hScorer));
+		} else {
+			hscoreLabel->setText("No high score has been achieved yet! Go play and set one!");
+		}
+		hscoreLabel->setFont(itemnameFont);
+		hscoreLabel->setAlignment(Qt::AlignHCenter);
+
 		/** Creates the text box for the user to enter in their name */
 		nameBox = new QLineEdit();
 		nameLayout = new QFormLayout();
@@ -184,6 +198,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent){
 		/** Adds the icons, instructions, name box, and start button to the main layout */
 		mainStackables->addLayout(iconStackables);
 		mainStackables->addWidget(nameInstructions);
+		mainStackables->addWidget(hscoreLabel);
 		mainStackables->addLayout(nameLayout);
 		mainStackables->addWidget(startgameButton);
 		window->setLayout(mainStackables);
@@ -233,7 +248,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent){
 		
 		/** Creates the in-game quit button */
 		ingamequitButton = new QPushButton("Quit Game");
-		connect(ingamequitButton, SIGNAL(clicked()), qApp, SLOT(quit()));
+		connect(ingamequitButton, SIGNAL(clicked()), this, SLOT(quitGame()));
 		menuBar->addWidget(ingamequitButton);
 		
 		/** Adds the game menubar, view, and footer buttons to a larger layout */
@@ -322,6 +337,7 @@ void MainWindow::startGame()
   delete nameInstructions;
   delete nameBox;
   delete startgameButton;
+  delete hscoreLabel;
   
   /** Changes the main layout of the screen to the game layout from that of the main menu */
 	window->setLayout(gameStackables);
@@ -638,6 +654,103 @@ void MainWindow::keyReleaseEvent(QKeyEvent *e){
 	}
 
 }
+
+/** Game quit slot which saves the user's (possible) high score to an external text file */
+void MainWindow::quitGame()
+{
+
+	/** Read scores.txt file first to determine if this user's score is a high score */
+	ifstream scorefile("scores.txt");
+	if (scorefile.good()) { /** File exists, check the high score and re-write a new one if necessary */
+  	
+  	/** Check if user actually achieved a high score */
+  	if (score > hScore){ /** User achieved a new high score! Write it and their name to the scores.txt file */
+  		ofstream ofile;
+  		ofile.open("scores.txt");
+  		ofile << userName << endl;
+  		if (score < 0){
+  			score = 0;
+  		}
+  		ofile << score << endl;
+			ofile.close();
+  	}
+  	
+	} else { /** File does NOT exist, create and write to a new one to save this user's score as the new high score */
+		  ofstream ofile;
+  		ofile.open("scores.txt");
+  		ofile << userName << endl;
+  		if (score < 0){
+  			score = 0;
+  		}
+  		ofile << score << endl;
+			ofile.close();
+	}
+	
+	exit(0);
+	
+	
+	/*
+	string score;
+	bool is_blank = true;
+  ifstream scorefile ("scores.txt");
+  if (scorefile.is_open())
+  {
+    while (scorefile.good()){ 
+    {
+      getline (scorefile,score);
+      if (score != ""){
+      	bool 
+      }
+    }
+    scorefile.close();
+  } else {
+  	cout << "Unable to open file";
+  }
+
+	*/
+
+}
+
+int MainWindow::getHighScore()
+{
+	
+	string hsName;
+	string hsScore;
+
+	/** Read scores.txt file first to determine if this user's score is a high score */
+	ifstream scorefile("scores.txt");
+	if (scorefile.good()) { /** File exists, check the high score and re-write a new one if necessary */
+      getline(scorefile,hsName);
+      getline(scorefile,hsScore);
+    	scorefile.close();
+  		int highscore = 0;
+  		stringstream(hsScore) >> highscore;
+  		return highscore;
+	} else {
+		return -1;
+	}
+	return -1;
+}
+
+string MainWindow::getHighScorer()
+{
+	
+	string hsName;
+	string hsScore;
+
+	/** Read scores.txt file first to determine if this user's score is a high score */
+	ifstream scorefile("scores.txt");
+	if (scorefile.good()) { /** File exists, check the high score and re-write a new one if necessary */
+      getline(scorefile,hsName);
+      getline(scorefile,hsScore);
+    	scorefile.close();
+  		return hsName;
+	} else {
+		return "";
+	}
+	return "";
+}
+
 
 /** Destructor for MainWindow */
 MainWindow::~MainWindow()
