@@ -40,7 +40,14 @@ The user must stay within the bounds of the USC campus while playing. This means
 The background looks like the following:
 ![Trousdale Parkway](http://www.usc.edu/dept/pubrel/specialevents/assets/venues/venue_large/trousdale_parkway.jpg "Trousdale Parkway")
 
-Image Sourced From [High Resultion Textures](http://www.highresolutiontextures.com/free-brick-wall-texture-pack)
+Additional Level Backgrounds Were Sourced From the Following URLs:
+[Alumni Park](http://sceneshot.com/locations/downtown-la-hollywood/alumni-park/)
+[Founders Park](http://www.usc.edu/dept/pubrel/specialevents/venue_vendor/venue_result.php?venueID=325)
+[e-Quad](http://s212.photobucket.com/user/sumanatum/media/USC/f4e7.jpg.html)
+[McCarthy Quad](http://www.flickr.com/photos/universityofsoutherncalifornia/7316747232/)
+[Parkside](http://viterbivoices.usc.edu/greg/my-freshman-dorm-parkside-arts-humanities-residential-college-update/)
+
+Image Sourced From [High Resolution Textures](http://www.highresolutiontextures.com/free-brick-wall-texture-pack)
 
 ### Skateboarders (Bad Thing)
 Skateboarders are one of the most prevalent items in the game. They will appear at random intervals and skateboard towards your character, and you have to avoid them. If you collide with a skateboarder, you will love five points, but colliding more than three times will cause your player to lose a life.
