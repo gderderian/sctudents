@@ -448,27 +448,27 @@ void MainWindow::handleTimer()
 			} else if (level == 3){
 				levelname = "Parkside";
 				bg_img->setPixmap(QPixmap("images/parkside.jpg").scaledToHeight(450));
-				ecredit_rate = ecredit_rate - 10; /** Make the level increasingly difficult by making it harder to get points */
-				food_rate = food_rate + 5; /** Makes the level inceasingly difficult by making more bad food items appear towards the user */
+				ecredit_rate = ecredit_rate - 10; /** Make the levels increasingly difficult by making it harder to get points */
+				food_rate = food_rate + 5; /** Makes the levels inceasingly difficult by making more bad food items appear towards the user */
 			} else if (level == 4){
 				levelname = "e-Quad";
 				bg_img->setPixmap(QPixmap("images/equad.jpg").scaledToHeight(450));
-				ecredit_rate = ecredit_rate - 10; /** Make the level increasingly difficult by making it harder to get points */
-				food_rate = food_rate + 5; /** Makes the level inceasingly difficult by making more bad food items appear towards the user */
+				ecredit_rate = ecredit_rate - 10; /** Make the levels increasingly difficult by making it harder to get points */
+				food_rate = food_rate + 5; /** Makes the levels inceasingly difficult by making more bad food items appear towards the user */
 			} else if (level == 5){
 				levelname = "McCarthy Quad";
 				bg_img->setPixmap(QPixmap("images/mccarthy.jpg").scaledToHeight(450));
-				ecredit_rate = ecredit_rate - 10; /** Make the level increasingly difficult by making it harder to get points */
-				food_rate = food_rate + 5; /** Makes the level inceasingly difficult by making more bad food items appear towards the user */
+				ecredit_rate = ecredit_rate - 10; /** Make the levels increasingly difficult by making it harder to get points */
+				food_rate = food_rate + 5; /** Makes the levels inceasingly difficult by making more bad food items appear towards the user */
 			} else if (level == 6){
 				levelname = "Trousdale Parkway";
 				bg_img->setPixmap(QPixmap("images/tdale_pkwy.jpg").scaledToHeight(450));
-				ecredit_rate = ecredit_rate - 10; /** Make the level increasingly difficult by making it harder to get points */
-				food_rate = food_rate + 5; /** Makes the level inceasingly difficult by making more bad food items appear towards the user */
+				ecredit_rate = ecredit_rate - 10; /** Make the levels increasingly difficult by making it harder to get points */
+				food_rate = food_rate + 5; /** Makes the levels inceasingly difficult by making more bad food items appear towards the user */
 			} else {
 			 	levelname = "Secret Impossible Level!";
-			 	ecredit_rate = ecredit_rate - 10; /** Make the level increasingly difficult by making it harder to get points */
-			 	food_rate = food_rate + 5; /** Makes the level inceasingly difficult by making more bad food items appear towards the user */
+			 	ecredit_rate = ecredit_rate - 10; /** Make the levels increasingly difficult by making it harder to get points */
+			 	food_rate = food_rate + 5; /** Makes the levels inceasingly difficult by making more bad food items appear towards the user */
 			}
 			
 			/** Sets new label on the level name */
