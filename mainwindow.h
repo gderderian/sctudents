@@ -158,6 +158,10 @@ private:
 		int cols_with_food;
 		/** Previous high score as read in from file, if applicable */
 		int hScore;
+		/** Timer iterations at which the extra credit items appear throughout the game (decreases) */
+		int ecredit_rate;
+		/** Timer iterations at which the food items appear throughout the game (increases) */
+		int food_rate;
 		/** Boolean for if the user should be moved up at the next handletimer() call */
 		bool goUp;
 		/** Boolean for if the user should be moved down at the next handletimer() call */

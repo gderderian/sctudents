@@ -297,6 +297,8 @@ void MainWindow::startGame()
 	timerRuns = 1;
 	cols_with_food = 0;
 	cols_with_sboarders = 0;
+	ecredit_rate = 450;
+	food_rate = 100;
 	goUp = false;
 	goDown = false;
 	goLeft = false;
@@ -346,7 +348,7 @@ void MainWindow::startGame()
 	gameTimer->start();
 	
 	/** Adds the Trousdale Parkway background image to the main game scene */
-	bg_img = new QGraphicsPixmapItem(QPixmap("images/tdale_pkwy.jpg").scaledToHeight(450));
+	bg_img = new QGraphicsPixmapItem(QPixmap("images/founderspark.jpg").scaledToHeight(450));
 	bg_img->setPos(0,0);
 	gameScene->addItem(bg_img);
 	
@@ -401,7 +403,7 @@ void MainWindow::handleTimer()
 	}
 	
 	/** Adds a new dining hall food item every 100 iterations and pushes it to the main objects vector */
-	if (timerRuns % 100 == 0){
+	if (timerRuns % food_rate == 0){
 		eat = new Food(&food_img, rand_x, 350);
 		gameScene->addItem(eat);
 		objects.push_back(eat);
@@ -415,7 +417,7 @@ void MainWindow::handleTimer()
 	}
 	
 	/** Adds a new extra credit item every 450 iterations and pushes it to the main objects vector */
-	if (timerRuns % 450 == 0){
+	if (timerRuns % ecredit_rate == 0){
 		ec = new ExtraCredit(&ecredit_img, 550, rand_y);
 		gameScene->addItem(ec);
 		objects.push_back(ec);
@@ -433,24 +435,40 @@ void MainWindow::handleTimer()
 			
 			/** Increases level counter and decreases timer interval */
 			level++;
-			levelTimer =  levelTimer - 10;
+			levelTimer = levelTimer - 10;
 			gameTimer->setInterval(levelTimer);
 			
 			/** Sets level name */
 			if (level == 1){
 				levelname = "Founders Park";
+				bg_img->setPixmap(QPixmap("images/founderspark.jpg").scaledToHeight(450));
 			} else if (level == 2){
 				levelname = "Alumni Park";
+				bg_img->setPixmap(QPixmap("images/alumnipark.jpg").scaledToHeight(450));
 			} else if (level == 3){
 				levelname = "Parkside";
+				bg_img->setPixmap(QPixmap("images/parkside.jpg").scaledToHeight(450));
+				ecredit_rate = ecredit_rate - 10; /** Make the level increasingly difficult by making it harder to get points */
+				food_rate = food_rate + 5; /** Makes the level inceasingly difficult by making more bad food items appear towards the user */
 			} else if (level == 4){
 				levelname = "e-Quad";
+				bg_img->setPixmap(QPixmap("images/equad.jpg").scaledToHeight(450));
+				ecredit_rate = ecredit_rate - 10; /** Make the level increasingly difficult by making it harder to get points */
+				food_rate = food_rate + 5; /** Makes the level inceasingly difficult by making more bad food items appear towards the user */
 			} else if (level == 5){
 				levelname = "McCarthy Quad";
+				bg_img->setPixmap(QPixmap("images/mccarthy.jpg").scaledToHeight(450));
+				ecredit_rate = ecredit_rate - 10; /** Make the level increasingly difficult by making it harder to get points */
+				food_rate = food_rate + 5; /** Makes the level inceasingly difficult by making more bad food items appear towards the user */
 			} else if (level == 6){
 				levelname = "Trousdale Parkway";
+				bg_img->setPixmap(QPixmap("images/tdale_pkwy.jpg").scaledToHeight(450));
+				ecredit_rate = ecredit_rate - 10; /** Make the level increasingly difficult by making it harder to get points */
+				food_rate = food_rate + 5; /** Makes the level inceasingly difficult by making more bad food items appear towards the user */
 			} else {
 			 	levelname = "Secret Impossible Level!";
+			 	ecredit_rate = ecredit_rate - 10; /** Make the level increasingly difficult by making it harder to get points */
+			 	food_rate = food_rate + 5; /** Makes the level inceasingly difficult by making more bad food items appear towards the user */
 			}
 			
 			/** Sets new label on the level name */
