@@ -35,7 +35,7 @@ void Skateboarder::move() {
 }
 
 /** Gets the unique key of this derived object. 
-		@return 1, indicating this is a skatebaorder, for action to be taken upon it during collisions in the MainWindow class.
+		@return 1, indicating this is a skateboarder, for action to be taken upon it during collisions in the MainWindow class.
 */
 int Skateboarder::getKey(){
 	return 1;
