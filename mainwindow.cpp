@@ -30,7 +30,7 @@ using namespace std;
 
 /** Constructor for MainWindow, which sets up the initial GUI menu, sets initial variables and images, and loads the menu screen for the user to enter their name and begin a game from.
  */
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent){
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent){ 
 
 		/** Sets up the initial windows, scenes, and layouts */
 		window = new QWidget();
