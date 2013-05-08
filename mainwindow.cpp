@@ -549,19 +549,19 @@ void MainWindow::handleTimer()
 	
 	/** Move user 10 pixels up, down, left, or right, by checking if the keypress indicator has been set */
 	if (goUp == true){
-		if (character->getY() > 0){
+		if (character->getY() > 5){
 			character->setY(character->getY() - 10);
 		}
 	} else if (goDown == true){
-		if (character->getY() <= (450 - 145)){
+		if (character->getY() <= (300)){
 			character->setY(character->getY() + 10);
 		}
 	} else if (goLeft == true){
-		if (character->getX() > 0){
+		if (character->getX() > 5){
 			character->setX(character->getX() - 10);
 		}
 	} else if (goRight == true){
-		if (character->getX() <= (625)){
+		if (character->getX() <= (620)){
 			character->setX(character->getX() + 10);
 		}
 	}
